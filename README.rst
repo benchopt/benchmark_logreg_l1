@@ -1,7 +1,7 @@
 Benchmark repository for Sparse Logistic Regression
 ===================================================
 
-|Build Status| |Python 3.6+| |codecov|
+|Build Status| |Python 3.6+|
 
 BenchOpt is a package to simplify and make more transparent and
 reproducible the comparisons of optimization algorithms. This benchmark test solvers to minimize the following problem:
@@ -37,9 +37,7 @@ Apart from the problem, options can be passed to `benchopt run`, to restrict the
 Use `benchopt run -h` for more details about these options, or visit https://benchopt.github.io/api.html.
 
 
-.. |Build Status| image:: https://dev.azure.com/benchopt/benchopt/_apis/build/status/benchopt.benchOpt?branchName=master
-   :target: https://dev.azure.com/benchopt/benchopt/_build/latest?definitionId=1&branchName=master
+.. |Build Status| image:: https://github.com/benchopt/benchmark_logreg_l1/workflows/build/badge.svg
+   :target: https://github.com/benchopt/benchmark_logreg_l1/actions
 .. |Python 3.6+| image:: https://img.shields.io/badge/python-3.6%2B-blue
    :target: https://www.python.org/downloads/release/python-360/
-.. |codecov| image:: https://codecov.io/gh/benchopt/benchOpt/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/benchopt/benchmark_logreg_l1
