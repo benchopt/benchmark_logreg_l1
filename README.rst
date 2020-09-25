@@ -4,7 +4,7 @@ Benchmark repository for Sparse Logistic Regression
 |Build Status| |Python 3.6+|
 
 BenchOpt is a package to simplify and make more transparent and
-reproducible the comparisons of optimization algorithms. This benchmark test solvers to minimize the following problem:
+reproducible the comparisons of optimization algorithms. This benchmark tests algorithms to solve the following problem:
 
 .. math::
 
@@ -23,7 +23,7 @@ This benchmark can be run using the following commands:
 
 .. code-block::
 
-	$ pip install -U benchopt
+   $ pip install -U benchopt
    $ git clone https://github.com/benchopt/benchmark_logreg_l1
    $ benchopt run benchmark_logreg_l1
 
@@ -31,7 +31,7 @@ Apart from the problem, options can be passed to `benchopt run`, to restrict the
 
 .. code-block::
 
-	$ benchopt run benchmark_logreg_l1 -s sklearn -d boston --max-runs 10 --n-repetitions 10
+   $ benchopt run benchmark_logreg_l1 -s sklearn -d boston --max-runs 10 --n-repetitions 10
 
 
 Use `benchopt run -h` for more details about these options, or visit https://benchopt.github.io/api.html.
