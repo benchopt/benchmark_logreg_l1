@@ -1,6 +1,7 @@
 import pandas as pd
 from benchopt.base import CommandLineSolver
-from benchopt.util import safe_import_context, import_shell_cmd
+from benchopt import safe_import_context
+from benchopt.helpers.shell import import_shell_cmd
 
 with safe_import_context() as import_ctx:
     train_cmd = import_shell_cmd('train')
