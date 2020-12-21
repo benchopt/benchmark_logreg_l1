@@ -1,3 +1,5 @@
+import scipy
+
 from benchopt import BaseSolver
 from benchopt import safe_import_context
 
@@ -14,11 +16,14 @@ class Solver(BaseSolver):
 
     def set_objective(self, X, y, lmbd):
         self.X, self.y, self.lmbd = X, y, lmbd
+        if (scipy.sparse.issparse(self.X) and
+                scipy.sparse.isspmatrix_csc(self.X)):
+            self.X = scipy.sparse.csr_matrix(self.X)
 
         self.solver = BinaryClassifier(loss='logistic', penalty='l1',
                                        fit_intercept=False)
         self.solver_parameter = dict(
-            lambd=self.lmbd / self.X.shape[0],
+            lambd=self.lmbd / self.X.shape[0], solver='auto', it0=1000000,
             tol=1e-12, verbose=False
         )
 
