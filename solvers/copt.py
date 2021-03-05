@@ -46,7 +46,7 @@ class Solver(BaseSolver):
 
         n_features = X.shape[1]
         f = copt.loss.LogLoss(X, y)
-        g = copt.penalty.L1Norm(self.lmbd / len(X))
+        g = copt.penalty.L1Norm(self.lmbd / X.shape[0])
 
         warnings.filterwarnings('ignore', category=RuntimeWarning)
 
