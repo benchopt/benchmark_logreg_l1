@@ -1,5 +1,4 @@
-from benchopt import BaseSolver
-from benchopt import safe_import_context
+from benchopt import BaseSolver, safe_import_context
 
 
 with safe_import_context() as import_ctx:
@@ -23,7 +22,9 @@ class Solver(BaseSolver):
         n_features = self.X.shape[1]
         self.beta = cp.Variable(n_features)
 
-        loss = cp.sum(cp.logistic(-cp.multiply(self.y, cp.matmul(self.X, self.beta))))
+        loss = cp.sum(
+            cp.logistic(-cp.multiply(self.y, cp.matmul(self.X, self.beta)))
+        )
         self.problem = cp.Problem(cp.Minimize(
             loss + self.lmbd * cp.norm(self.beta, 1)))
 
