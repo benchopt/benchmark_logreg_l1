@@ -5,7 +5,7 @@ from benchopt import BaseSolver, safe_import_context
 
 with safe_import_context() as import_ctx:
     from celer import LogisticRegression
-    from celer.homotopy import ConvergenceWarning
+    from sklearn.exceptions import ConvergenceWarning
 
 
 class Solver(BaseSolver):
