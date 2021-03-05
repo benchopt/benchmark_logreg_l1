@@ -1,7 +1,7 @@
 import numpy as np
 
 
-from benchopt.base import BaseObjective
+from benchopt import BaseObjective
 
 
 class Objective(BaseObjective):
@@ -20,7 +20,7 @@ class Objective(BaseObjective):
         self.X, self.y = X, y
         self.lmbd = self.reg * self._get_lambda_max()
 
-    def __call__(self, beta):
+    def compute(self, beta):
         y_X_beta = self.y * self.X.dot(beta.flatten())
         l1 = abs(beta).sum()
         return np.log(1 + np.exp(-y_X_beta)).sum() + self.lmbd * l1
