@@ -52,7 +52,6 @@ class Solver(BaseSolver):
 
     def run(self, n_iter):
         X, y, solver = self.X, self.y, self.solver
-
         n_features = X.shape[1]
 
         x0 = np.zeros(n_features)
@@ -60,8 +59,8 @@ class Solver(BaseSolver):
             self.beta = x0
             return
 
-        f = copt.loss.LogLoss(X, y)
-        g = copt.penalty.L1Norm(self.lmbd / X.shape[0])
+        f = cp.loss.LogLoss(X, y)
+        g = cp.penalty.L1Norm(self.lmbd / X.shape[0])
 
         warnings.filterwarnings('ignore', category=RuntimeWarning)
 
@@ -87,7 +86,7 @@ class Solver(BaseSolver):
                 f.partial_deriv,
                 X,
                 y,
-                np.zeros(n_features),
+                x0,
                 prox=g.prox_factory(n_features),
                 step_size=step_size,
                 tol=0,
@@ -100,7 +99,7 @@ class Solver(BaseSolver):
                 f.partial_deriv,
                 X,
                 y,
-                np.zeros(n_features),
+                x0,
                 prox=g.prox_factory(n_features),
                 step_size=step_size,
                 tol=0,
