@@ -1,5 +1,5 @@
-from benchopt.base import CommandLineSolver
 from benchopt import safe_import_context
+from benchopt.base import CommandLineSolver
 from benchopt.helpers.shell import import_shell_cmd
 
 with safe_import_context() as import_ctx:
