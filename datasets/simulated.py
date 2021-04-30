@@ -24,7 +24,9 @@ class Dataset(BaseDataset):
     def get_data(self):
         rng = np.random.RandomState(self.random_state)
         X = rng.randn(self.n_samples, self.n_features)
-        y = 2*(rng.randn(self.n_samples) > 0) - 1
+
+        beta = rng.randn(self.n_features)
+        y = np.sign(X @ beta)
 
         data = dict(X=X, y=y)
 
