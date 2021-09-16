@@ -10,7 +10,7 @@ class Solver(BaseSolver):
     name = 'Cyanure'
 
     install_cmd = 'conda'
-    requirements = ['pip:cyanure-mkl']
+    requirements = ['mkl', 'pip:cyanure-mkl']
 
     def set_objective(self, X, y, lmbd):
         self.X, self.y, self.lmbd = X, y, lmbd
