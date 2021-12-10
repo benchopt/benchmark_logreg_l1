@@ -13,6 +13,7 @@ class Solver(BaseSolver):
     stop_strategy = 'iteration'
 
     install_cmd = 'conda'
+    # need 0.7dev until max_iter=0 is supported on pypi version (0.7 release)
     requirements = ['pip:git+https://github.com/mathurinm/celer.git']
 
     def set_objective(self, X, y, lmbd):
