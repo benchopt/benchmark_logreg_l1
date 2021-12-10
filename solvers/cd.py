@@ -49,7 +49,7 @@ class Solver(BaseSolver):
 
     parameters = {
         'newton_step': [False, True],
-        }
+    }
 
     def set_objective(self, X, y, lmbd):
         self.y, self.lmbd = y, lmbd
@@ -86,7 +86,7 @@ class Solver(BaseSolver):
     @njit
     def cd(X, y, lmbd, L, n_iter, newton_step):
         n_samples, n_features = X.shape
-        Xw = np.zeros_like(y)
+        Xw = np.zeros_like(y, dtype=X.dtype)
         w = np.zeros(n_features)
         for _ in range(n_iter):
             for j in range(n_features):
