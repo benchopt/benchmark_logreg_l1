@@ -21,13 +21,12 @@ class Objective(BaseObjective):
         self.lmbd = self.reg * self._get_lambda_max()
 
     def compute(self, beta):
-        y_X_beta = self.y * self.X.dot(beta.flatten())
+        y_X_beta = self.y * (self.X @ beta.flatten())
         l1 = abs(beta).sum()
         return np.log(1 + np.exp(-y_X_beta)).sum() + self.lmbd * l1
 
     def _get_lambda_max(self):
-        return abs(self.X.T.dot(self.y)).max()
+        return abs(self.X.T @ self.y).max() / 2
 
     def to_dict(self):
         return dict(X=self.X, y=self.y, lmbd=self.lmbd)
-        #           fit_intercept=self.fit_intercept)
