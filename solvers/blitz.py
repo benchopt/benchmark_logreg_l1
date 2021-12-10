@@ -18,8 +18,8 @@ class Solver(BaseSolver):
         self.X, self.y, self.lmbd = X, y, lmbd
 
         blitzl1.set_use_intercept(False)
-        self.problem = blitzl1.LogRegProblem(self.X, self.y)
         blitzl1.set_tolerance(0)
+        self.problem = blitzl1.LogRegProblem(self.X, self.y)
 
     def run(self, n_iter):
         self.coef_ = self.problem.solve(self.lmbd, max_iter=n_iter).x
