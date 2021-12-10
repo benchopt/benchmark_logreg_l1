@@ -7,25 +7,22 @@ with safe_import_context() as import_ctx:
 
 class Solver(BaseSolver):
     name = 'Blitz'
-    stop_strategy = 'tolerance'
+    stop_strategy = 'iteration'
 
     install_cmd = 'conda'
     requirements = [
-        'pip:git+https://github.com/tommoral/blitzl1.git@FIX_setup_deps'
+        'pip:git+https://github.com/tbjohns/blitzl1.git@master'
     ]
 
     def set_objective(self, X, y, lmbd):
         self.X, self.y, self.lmbd = X, y, lmbd
 
-        # n_samples = self.X.shape[0]
-        # self.lmbd /= n_samples
-
         blitzl1.set_use_intercept(False)
         self.problem = blitzl1.LogRegProblem(self.X, self.y)
+        blitzl1.set_tolerance(0)
 
-    def run(self, tolerance):
-        blitzl1.set_tolerance(tolerance)
-        self.coef_ = self.problem.solve(self.lmbd).x
+    def run(self, n_iter):
+        self.coef_ = self.problem.solve(self.lmbd, max_iter=n_iter).x
 
     def get_result(self):
         return self.coef_.flatten()
