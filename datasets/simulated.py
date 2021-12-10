@@ -1,4 +1,4 @@
-from benchopt import BaseDataset, safe_import_context
+from benchopt import BaseDataset
 from benchopt.datasets import make_correlated_data
 
 
