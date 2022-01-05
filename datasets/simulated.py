@@ -1,5 +1,6 @@
 from benchopt import BaseDataset
-from benchopt.datasets import make_correlated_data
+with safe_import_context() as import_ctx:
+    from benchopt.datasets import make_correlated_data
 
 
 class Dataset(BaseDataset):
