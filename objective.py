@@ -9,7 +9,7 @@ class Objective(BaseObjective):
 
     parameters = {
         'fit_intercept': [False],
-        'reg': [0.05, .1, .5]
+        'reg': [.5, .1, .05]
     }
 
     def __init__(self, reg=.1, fit_intercept=False):
@@ -17,6 +17,9 @@ class Objective(BaseObjective):
         self.fit_intercept = fit_intercept
 
     def set_data(self, X, y):
+        if set(y) - set([-1, 1]):
+            raise ValueError(
+                "y must contain only -1 or 1 as values. Got %s " % (set(y)))
         self.X, self.y = X, y
         self.lmbd = self.reg * self._get_lambda_max()
 
