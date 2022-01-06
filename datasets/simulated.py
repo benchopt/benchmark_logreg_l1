@@ -1,7 +1,7 @@
 from benchopt import BaseDataset, safe_import_context
 
 with safe_import_context() as import_ctx:
-    import numpy as np
+    from benchopt.datasets import make_correlated_data
 
 
 class Dataset(BaseDataset):
@@ -10,9 +10,8 @@ class Dataset(BaseDataset):
 
     parameters = {
         'n_samples, n_features': [
-            (100, 5000),
-            (100, 10000),
-            (1000, 10)
+            (500, 2000),
+            (500, 5000),
         ]
     }
 
@@ -22,11 +21,9 @@ class Dataset(BaseDataset):
         self.random_state = random_state
 
     def get_data(self):
-        rng = np.random.RandomState(self.random_state)
-        X = rng.randn(self.n_samples, self.n_features)
-
-        beta = rng.randn(self.n_features)
-        y = np.sign(X @ beta)
+        X, y, _ = make_correlated_data(
+            self.n_samples, self.n_features, random_state=self.random_state)
+        y = 2 * (y > 0) - 1
 
         data = dict(X=X, y=y)
 
