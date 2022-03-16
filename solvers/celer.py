@@ -10,7 +10,7 @@ with safe_import_context() as import_ctx:
 
 class Solver(BaseSolver):
     name = 'Celer'
-    stoping_strategy = 'iteration'
+    stopping_strategy = 'iteration'
 
     install_cmd = 'conda'
     # need 0.7dev until max_iter=0 is supported on pypi version (0.7 release)
