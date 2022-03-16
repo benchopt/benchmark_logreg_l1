@@ -9,7 +9,7 @@ with safe_import_context() as import_ctx:
 
 class Solver(CommandLineSolver):
     name = 'Liblinear'
-    stop_strategy = 'tolerance'
+    stopping_strategy = 'tolerance'
 
     install_cmd = 'shell'
     install_script = 'install_liblinear.sh'
