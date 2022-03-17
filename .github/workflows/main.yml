@@ -50,9 +50,6 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: |
         brew install libomp
-        ls /usr/local/opt/libomp/lib/
-        export OMP_NUM_THREADS=1
-        echo $OMP_NUM_THREADS
 
     - name: Install benchopt and its dependencies
       run: |
@@ -67,7 +64,6 @@ jobs:
     - name: Test
       run: |
         export OMP_NUM_THREADS=1
-        echo $OMP_NUM_THREADS
 
         benchopt test . --env-name bench_test_env -vl
         benchopt test . --env-name bench_test_env -vl --skip-install
