@@ -1,42 +1,32 @@
 from benchopt import BaseSolver, safe_import_context
-import warnings
 
 with safe_import_context() as import_ctx:
-    # from snapml import LogisticRegression
-    from sklearn.exceptions import ConvergenceWarning
-    from sklearn.linear_model import LogisticRegression
-
-    # import numpy as np
+    from snapml import LogisticRegression
+    import numpy as np
 
 
 class Solver(BaseSolver):
     name = "snapml"
 
     install_cmd = "conda"
-    requirements = ["scikit-learn"]
-
-    parameters = {
-        "solver": [
-            # 'saga',
-            "liblinear"
-        ],
-    }
-    parameter_template = "{solver}"
+    requirements = ["pip:snapml"]
 
     def set_objective(self, X, y, lmbd):
         self.X, self.y, self.lmbd = X, y, lmbd
 
-        warnings.filterwarnings("ignore", category=ConvergenceWarning)
-
         self.clf = LogisticRegression(
-            solver=self.solver,
-            C=1 / self.lmbd,
-            penalty="l1",
             fit_intercept=False,
+            regularizer=self.lmbd,
+            penalty="l1",
             tol=1e-12,
+            dual=False,
         )
 
     def run(self, n_iter):
+        if n_iter == 0:
+            self.clf.coef_ = np.zeros(self.X.shape[1])
+            return
+
         self.clf.max_iter = n_iter
         self.clf.fit(self.X, self.y)
 
