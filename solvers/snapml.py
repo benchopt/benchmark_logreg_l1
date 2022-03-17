@@ -9,7 +9,7 @@ class Solver(BaseSolver):
     name = "snapml"
 
     install_cmd = "conda"
-    requirements = ["openmp", "pip:snapml"]
+    requirements = ["llvm-openmp", "pip:snapml"]
 
     def set_objective(self, X, y, lmbd):
         self.X, self.y, self.lmbd = X, y, lmbd
