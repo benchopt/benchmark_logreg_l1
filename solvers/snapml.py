@@ -5,7 +5,8 @@ with safe_import_context() as import_ctx:
     # from snapml import LogisticRegression
     from sklearn.exceptions import ConvergenceWarning
     from sklearn.linear_model import LogisticRegression
-    import numpy as np
+
+    # import numpy as np
 
 
 class Solver(BaseSolver):

@@ -49,8 +49,8 @@ jobs:
     - name: Install OpenMP
       if: matrix.os == 'macos-latest'
       run: |
-        echo "inside"
         brew install libomp
+        ls /usr/local/opt/libomp/lib/
 
     - name: Install benchopt and its dependencies
       run: |
