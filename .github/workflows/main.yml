@@ -46,6 +46,10 @@ jobs:
 
     - run: conda info
 
+    - name: Install OpenMP
+      if: matrix.os == 'macos-latest'
+      run: brew install libomp
+
     - name: Install benchopt and its dependencies
       run: |
         conda info
