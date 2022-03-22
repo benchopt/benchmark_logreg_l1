@@ -12,11 +12,11 @@ class Dataset(BaseDataset):
     name = "libsvm"
 
     parameters = {
-        'dataset': ["news20.binary", "rcv1.binary"],
+        "dataset": ["news20.binary", "rcv1.binary", "SUSY"],
     }
 
-    install_cmd = 'conda'
-    requirements = ['pip:libsvmdata']
+    install_cmd = "conda"
+    requirements = ["pip:libsvmdata"]
 
     def __init__(self, dataset="bodyfat"):
         self.dataset = dataset
@@ -26,6 +26,9 @@ class Dataset(BaseDataset):
 
         if self.X is None:
             self.X, self.y = fetch_libsvm(self.dataset)
+
+        if self.dataset == "SUSY":
+            self.y = 2 * (self.y > 0) - 1
 
         data = dict(X=self.X, y=self.y)
 
