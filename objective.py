@@ -25,7 +25,7 @@ class Objective(BaseObjective):
         self.lmbd = self.reg * self._get_lambda_max()
 
     def get_one_solution(self):
-        n_features = self.n_features
+        n_features = self.X.shape[1]
         if self.fit_intercept:
             n_features += 1
         return np.zeros(n_features)
