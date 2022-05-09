@@ -32,4 +32,4 @@ class Dataset(BaseDataset):
 
         data = dict(X=self.X, y=self.y)
 
-        return self.X.shape[1], data
+        return data

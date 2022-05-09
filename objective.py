@@ -24,6 +24,12 @@ class Objective(BaseObjective):
         self.X, self.y = X, y
         self.lmbd = self.reg * self._get_lambda_max()
 
+    def get_one_solution(self):
+        n_features = self.n_features
+        if self.fit_intercept:
+            n_features += 1
+        return np.zeros(n_features)
+
     def compute(self, beta):
         y_X_beta = self.y * (self.X @ beta.flatten())
         l1 = abs(beta).sum()
