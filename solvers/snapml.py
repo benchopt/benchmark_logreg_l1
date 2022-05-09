@@ -1,4 +1,7 @@
 from benchopt import BaseSolver, safe_import_context
+from benchopt.utils.sys_info import _get_cuda_version
+
+cuda_version = _get_cuda_version()
 
 with safe_import_context() as import_ctx:
     from snapml import LogisticRegression
@@ -13,6 +16,7 @@ class Solver(BaseSolver):
 
     def set_objective(self, X, y, lmbd):
         self.X, self.y, self.lmbd = X, y, lmbd
+        self.use_gpu = cuda_version is not None
 
         self.clf = LogisticRegression(
             fit_intercept=False,
@@ -20,6 +24,7 @@ class Solver(BaseSolver):
             penalty="l1",
             tol=1e-12,
             dual=False,
+            use_gpu=self.use_gpu,
         )
 
     def run(self, n_iter):
