@@ -1,5 +1,4 @@
 import sys  # noqa: F401
-
 import pytest  # noqa: F401
 
 
