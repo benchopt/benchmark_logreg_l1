@@ -12,10 +12,7 @@ with safe_import_context() as import_ctx:
     import cudf
     from scipy import sparse
 
-    import cudf
-    import cupy as cp
     import cupyx.scipy.sparse as cusparse
-
     from cuml.linear_model import LogisticRegression
 
 
