@@ -31,7 +31,8 @@ class Objective(BaseObjective):
         return np.zeros(n_features)
 
     def compute(self, beta):
-        y_X_beta = self.y * (self.X @ beta.flatten())
+        beta = beta.flatten().astype(np.float64)
+        y_X_beta = self.y * (self.X @ beta)
         l1 = abs(beta).sum()
         return np.log(1 + np.exp(-y_X_beta)).sum() + self.lmbd * l1
 
