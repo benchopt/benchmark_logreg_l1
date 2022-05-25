@@ -21,4 +21,4 @@ solver:
   - sklearn
   - snapml
 
-  output: logreg_l1
+output: logreg_l1
