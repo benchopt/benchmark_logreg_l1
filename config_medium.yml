@@ -14,10 +14,11 @@ solver:
   - cd
   - celer
   - copt
-  # - cuml
-  # - glmnet
+  - cuml
   - cyanure
   - liblinear
   - lightning
   - sklearn
   - snapml
+
+  output: logreg_l1
