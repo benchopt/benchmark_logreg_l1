@@ -6,6 +6,8 @@ dataset:
   - libsvm[dataset=rcv1.binary]
   - libsvm[dataset=news20.binary]
   - libsvm[dataset=SUSY]
+  - libsvm[dataset=gisette]
+  - libsvm[dataset=colon-cancer]
 n-repetitions: 5
 n-jobs: 12
 timeout: 3000
