@@ -1,0 +1,24 @@
+objective:
+  - Sparse Logistic Regression[fit_intercept=False,reg=0.1]
+  - Sparse Logistic Regression[fit_intercept=False,reg=0.01]
+  - Sparse Logistic Regression[fit_intercept=False,reg=0.001]
+dataset:
+  - meg
+  - libsvm[dataset=rcv1.binary]
+  - libsvm[dataset=news20.binary]
+  - libsvm[dataset=SUSY]
+n-repetitions: 5
+n-jobs: 12
+timeout: 3000
+solver:
+  - blitz
+  - cd
+  - celer
+  - copt
+  # - cuml
+  # - glmnet
+  - cyanure
+  - liblinear
+  - lightning
+  - sklearn
+  - snapml
