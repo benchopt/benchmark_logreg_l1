@@ -3,7 +3,6 @@ objective:
   - Sparse Logistic Regression[fit_intercept=False,reg=0.01]
   - Sparse Logistic Regression[fit_intercept=False,reg=0.001]
 dataset:
-  - meg
   - libsvm[dataset=rcv1.binary]
   - libsvm[dataset=news20.binary]
   - libsvm[dataset=SUSY]
