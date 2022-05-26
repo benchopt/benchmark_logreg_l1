@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 from celer.plot_utils import configure_plt
 
 
-SAVEFIG = False
-# SAVEFIG = True
+# SAVEFIG = False
+SAVEFIG = True
 figname = "logreg_l1"
 # figname = "finance"
 # figname = "rcv1_news20"
@@ -28,10 +28,10 @@ SOLVERS = {
     'cd[newton_step=False]': 'coordinate descent',
     'cd[newton_step=True]': 'coordinate descent (Newton)',
     'Celer': 'celer',
-    'copt[accelerated=False,line_search=False,solver=pgd]': 'copt1',
-    'copt[accelerated=False,line_search=True,solver=pgd]': 'copt2',
-    'copt[accelerated=True,line_search=False,solver=pgd]': 'copt3',
-    'copt[accelerated=True,line_search=True,solver=pgd]': 'copt3',
+    'copt[accelerated=False,line_search=False,solver=pgd]': 'copt (PGD)',
+    'copt[accelerated=False,line_search=True,solver=pgd]': 'copt (PGD line search)',
+    'copt[accelerated=True,line_search=False,solver=pgd]': 'copt (FISTA)',
+    'copt[accelerated=True,line_search=True,solver=pgd]': 'copt (FISTA line search)',
     'Cyanure': 'cyanure',
     'cuml[qn]': 'cuML[qn]',
     'Lightning': 'lightning',
@@ -47,8 +47,8 @@ all_solvers = SOLVERS.keys()
 DICT_XLIM = {
     "libsvm[dataset=rcv1.binary]": 1e-2,
     "libsvm[dataset=news20.binary]": 1e-1,
-    "libsvm[dataset=colon-cancer]": 1e-3,
-    "libsvm[dataset=gisette]": 1e-3,
+    "libsvm[dataset=colon-cancer]": 1e-4,
+    "libsvm[dataset=gisette]": 1e-2,
 }
 
 DICT_TITLE = {
@@ -74,8 +74,8 @@ DICT_YTICKS = {
 DICT_XTICKS = {
     'libsvm[dataset=rcv1.binary]': np.geomspace(1e-2, 1e2, 5),
     'libsvm[dataset=news20.binary]': np.geomspace(1e-1, 1e3, 5),
-    'libsvm[dataset=gisette]': [1e2, 1, 1e-2, ],
-    'libsvm[dataset=colon-cancer]': [1e-4, 1e-2, 1, 1e2, ],
+    'libsvm[dataset=gisette]': np.geomspace(1e-2, 1e2, 5),
+    'libsvm[dataset=colon-cancer]': np.geomspace(1e-4, 1e2, 7),
 }
 
 configure_plt()
