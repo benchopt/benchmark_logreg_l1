@@ -14,7 +14,7 @@ figname = "logreg_l1"
 # RUN `benchopt run . --config config_medium.yml`, then replace BENCH_NAME
 # by the name of the produced results csv file.
 
-BENCH_NAME = "outputs/logreg_l1-neurips.csv"
+BENCH_NAME = "outputs/logreg-l1_neurips.csv"
 
 FLOATING_PRECISION = 1e-8
 MIN_XLIM = 1e-3
@@ -27,9 +27,13 @@ SOLVERS = {
     'cd[newton_step=True]': 'coordinate descent (Newton)',
     'Celer': 'celer',
     'copt[accelerated=False,line_search=False,solver=pgd]': 'copt (PGD)',
-    'copt[accelerated=False,line_search=True,solver=pgd]': 'copt (PGD line search)',
+    'copt[accelerated=False,line_search=True,solver=pgd]': (
+        'copt (PGD line search)'
+    ),
     'copt[accelerated=True,line_search=False,solver=pgd]': 'copt (FISTA)',
-    'copt[accelerated=True,line_search=True,solver=pgd]': 'copt (FISTA line search)',
+    'copt[accelerated=True,line_search=True,solver=pgd]': (
+        'copt (FISTA line search)'
+    ),
     'Cyanure': 'cyanure',
     'cuml[qn]': 'cuML[qn]',
     'Lightning': 'lightning',
@@ -50,9 +54,15 @@ DICT_XLIM = {
 }
 
 DICT_TITLE = {
-    'Sparse Logistic Regression[fit_intercept=False,reg=0.1]': r'$\lambda = 0.1 \lambda_{\mathrm{max}}$',
-    'Sparse Logistic Regression[fit_intercept=False,reg=0.01]': r'$\lambda = 0.01 \lambda_{\mathrm{max}}$',
-    'Sparse Logistic Regression[fit_intercept=False,reg=0.001]': r'$\lambda = 0.001 \lambda_{\mathrm{max}}$',
+    'Sparse Logistic Regression[fit_intercept=False,reg=0.1]': (
+        r'$\lambda = 0.1 \lambda_{\mathrm{max}}$'
+    ),
+    'Sparse Logistic Regression[fit_intercept=False,reg=0.01]': (
+        r'$\lambda = 0.01 \lambda_{\mathrm{max}}$'
+    ),
+    'Sparse Logistic Regression[fit_intercept=False,reg=0.001]': (
+        r'$\lambda = 0.001 \lambda_{\mathrm{max}}$'
+    ),
 }
 
 DICT_YLABEL = {
@@ -98,7 +108,7 @@ objectives = df["objective_name"].unique()
 titlesize = 22
 ticksize = 16
 labelsize = 20
-regex = re.compile('\[(.*?)\]')
+regex = re.compile(r'\[(.*?)\]')
 
 plt.close('all')
 fig1, axarr = plt.subplots(
@@ -134,7 +144,9 @@ for idx_data, dataset in enumerate(datasets):
                 linestyle=linestyle)
 
         ax.set_xlim([DICT_XLIM.get(dataset, MIN_XLIM), ax.get_xlim()[1]])
-        axarr[len(datasets)-1, idx_obj].set_xlabel("Time (s)", fontsize=labelsize)
+        axarr[len(datasets)-1, idx_obj].set_xlabel(
+            "Time (s)", fontsize=labelsize
+        )
         axarr[0, idx_obj].set_title(
             DICT_TITLE[objective], fontsize=labelsize)
 
