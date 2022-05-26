@@ -14,7 +14,7 @@ figname = "logreg_l1"
 # RUN `benchopt run . --config config_medium.yml`, then replace BENCH_NAME
 # by the name of the produced results csv file.
 
-BENCH_NAME = "logreg_l1-neurips.csv"
+BENCH_NAME = "outputs/logreg_l1-neurips.csv"
 
 FLOATING_PRECISION = 1e-8
 MIN_XLIM = 1e-3
