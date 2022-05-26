@@ -1,19 +1,17 @@
 from benchopt import BaseSolver, safe_import_context
-from benchopt.utils.sys_info import get_cuda_version
+from benchopt.helpers.requires_gpu import requires_gpu
 
-cuda_version = get_cuda_version()
-if cuda_version is not None:
-    cuda_version = cuda_version.split("cuda_", 1)[1][:4]
-
+cuda_version = None
 with safe_import_context() as import_ctx:
-    if cuda_version is None:
-        raise ImportError("cuml solver needs a nvidia GPU.")
+    cuda_version = requires_gpu()
 
-    import cudf
-    from scipy import sparse
+    if cuda_version is not None:
 
-    import cupyx.scipy.sparse as cusparse
-    from cuml.linear_model import LogisticRegression
+        import cudf
+        from scipy import sparse
+
+        import cupyx.scipy.sparse as cusparse
+        from cuml.linear_model import LogisticRegression
 
 
 class Solver(BaseSolver):

@@ -8,7 +8,6 @@ dataset:
   - libsvm[dataset=gisette]
   - libsvm[dataset=colon-cancer]
 n-repetitions: 5
-n-jobs: 12
 timeout: 3000
 solver:
   - blitz
@@ -17,9 +16,8 @@ solver:
   - copt
   - cuml
   - cyanure
-  - liblinear
   - lightning
   - sklearn
   - snapml
 
-output: logreg_l1
+output: logreg-l1_neurips

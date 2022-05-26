@@ -28,6 +28,8 @@ def _newton_step_size(X, exp_yXw, j):
     hess_jj = 0.
     for i in range(len(X)):
         hess_jj += X[i, j]**2 * exp_yXw[i] / (1 + exp_yXw[i])**2
+    if hess_jj == 0:
+        return 1
     return 1 / hess_jj
 
 
@@ -38,6 +40,8 @@ def _newton_step_size_sparse(X_data, X_indices, X_indptr, exp_yXw, j):
     for ind in range(start, end):
         i = X_indices[ind]
         hess_jj += X_data[ind]**2 * exp_yXw[i] / (1 + exp_yXw[i])**2
+    if hess_jj == 0:
+        return 1
     return 1 / hess_jj
 
 
@@ -68,6 +72,7 @@ class Solver(BaseSolver):
             L = sparse.linalg.norm(self.X, axis=0)**2 / 4
         else:
             L = (self.X ** 2).sum(axis=0) / 4
+        L[L == 0] = 1
         return L
 
     def run(self, n_iter):
