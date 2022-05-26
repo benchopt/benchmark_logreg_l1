@@ -1,8 +1,8 @@
 import re
-import os
 import itertools
 import numpy as np
 import pandas as pd
+from pathlib import Path
 import matplotlib.pyplot as plt
 from celer.plot_utils import configure_plt
 
@@ -10,8 +10,6 @@ from celer.plot_utils import configure_plt
 # SAVEFIG = False
 SAVEFIG = True
 figname = "logreg_l1"
-# figname = "finance"
-# figname = "rcv1_news20"
 
 # RUN `benchopt run . --config config_medium.yml`, then replace BENCH_NAME
 # by the name of the produced results csv file.
@@ -109,29 +107,14 @@ fig1, axarr = plt.subplots(
     sharex=False,
     sharey='row',
     figsize=[11, 1 + 2 * len(datasets)],
-    constrained_layout=True)
-
-# handle if there is only 1 dataset/objective:
-if len(datasets) == 1:
-    if len(objectives) == 1:
-        axarr = np.atleast_2d(axarr)
-    else:
-        axarr = axarr[None, :]
-elif len(objectives) == 1:
-    axarr = axarr[:, None]
+    constrained_layout=True,
+    squeeze=False)
 
 for idx_data, dataset in enumerate(datasets):
     df1 = df[df['data_name'] == dataset]
     for idx_obj, objective in enumerate(objectives):
         df2 = df1[df1['objective_name'] == objective]
         ax = axarr[idx_data, idx_obj]
-        # check that at least one solver converged to compute c_star
-        # if df2["objective_duality_gap"].min() > FLOATING_PRECISION * df2["objective_duality_gap"].max():
-        #     print(
-        #         f"No solver reached a duality gap below {FLOATING_PRECISION}, "
-        #         "cannot safely evaluate minimum objective."
-        #     )
-        #     continue
         c_star = np.min(df2["objective_value"]) - FLOATING_PRECISION
         for i, solver_name in enumerate(solvers):
             df3 = df2[df2['solver_name'] == solver_name]
@@ -175,7 +158,6 @@ n_col = 4
 if n_col is None:
     n_col = len(axarr[0, 0].lines)
 
-# take first ax, more likely to have all solvers converging
 ax = axarr[0, 0]
 lines_ordered = list(itertools.chain(
     *[ax.lines[i::n_col] for i in range(n_col)]))
@@ -192,12 +174,9 @@ plt.show(block=False)
 
 
 if SAVEFIG:
+    Path("figures").mkdir(exist_ok=True)
     fig1_name = f"figures/{figname}.pdf"
     fig1.savefig(fig1_name)
-    os.system(f"pdfcrop {fig1_name} {fig1_name}")
-    fig1.savefig(f"figures/{figname}.svg")
 
     fig2_name = f"figures/{figname}_legend.pdf"
     fig2.savefig(fig2_name)
-    os.system(f"pdfcrop {fig2_name} {fig2_name}")
-    fig2.savefig(f"figures/{figname}_legend.svg")
