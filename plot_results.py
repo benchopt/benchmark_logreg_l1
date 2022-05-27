@@ -4,7 +4,16 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
-from celer.plot_utils import configure_plt
+import matplotlib as mpl
+
+
+usetex = mpl.checkdep_usetex(True)
+params = {
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Computer Modern Roman"],
+    "text.usetex": usetex,
+}
+mpl.rcParams.update(params)
 
 
 # SAVEFIG = False
@@ -86,7 +95,6 @@ DICT_XTICKS = {
     'libsvm[dataset=colon-cancer]': np.geomspace(1e-4, 1e2, 7),
 }
 
-configure_plt()
 CMAP = plt.get_cmap('tab20')
 style = {solv: (CMAP(i), MARKERS[i]) for i, solv in enumerate(all_solvers)}
 
