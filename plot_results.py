@@ -1,10 +1,11 @@
 import re
 import itertools
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-import matplotlib.pyplot as plt
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 
 usetex = mpl.checkdep_usetex(True)
