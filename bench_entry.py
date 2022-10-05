@@ -8,7 +8,7 @@ run_benchmark(benchmark_logreg, max_runs=25,
               solver_names=[
                   "Blitz",
                   "skglm",
-                  "sklearn",
+                  #   "sklearn",
                   #   "celer",
                   #   'lightning',
               ],
