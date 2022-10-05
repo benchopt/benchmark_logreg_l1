@@ -14,7 +14,7 @@ class Solver(BaseSolver):
 
     install_cmd = 'conda'
     requirements = [
-        'pip:skglm'
+        'pip:git+https://github.com/scikit-learn-contrib/skglm.git@main'
     ]
     references = [
         'Q. Bertrand and Q. Klopfenstein and P.-A. Bannier and G. Gidel'
@@ -30,7 +30,7 @@ class Solver(BaseSolver):
         warnings.filterwarnings('ignore', category=ConvergenceWarning)
         self.logreg = SparseLogisticRegression(
             alpha=self.lmbd / n_samples, max_iter=1, max_epochs=50_000,
-            tol=1e-12, fit_intercept=False, warm_start=False, verbose=False)
+            tol=1e-12, fit_intercept=False, warm_start=False)
 
         # Cache Numba compilation
         self.run(1)

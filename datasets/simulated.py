@@ -11,7 +11,7 @@ class Dataset(BaseDataset):
     parameters = {
         'n_samples, n_features': [
             (500, 2000),
-            (500, 5000),
+            (3000, 5000),
         ]
     }
 
