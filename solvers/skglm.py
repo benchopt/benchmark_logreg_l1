@@ -16,7 +16,7 @@ class Solver(BaseSolver):
 
     install_cmd = 'conda'
     requirements = [
-        'pip:git+https://github.com/scikit-learn-contrib/skglm.git@main'
+        'pip:skglm>=0.2',
     ]
     references = [
         'Q. Bertrand and Q. Klopfenstein and P.-A. Bannier and G. Gidel'
