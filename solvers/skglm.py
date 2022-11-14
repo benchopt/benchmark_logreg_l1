@@ -36,7 +36,8 @@ class Solver(BaseSolver):
             solver=ProxNewton(tol=1e-12, fit_intercept=False)
         )
 
-        # Cache Numba compilation
+        # Perform 5 iteration of solver to cache Numba compilation
+        # and avoid wiggly objective curves
         self.run(5)
 
     def run(self, n_iter):
