@@ -7,7 +7,7 @@ Benchopt is a package to simplify and make more transparent and
 reproducible the comparisons of optimization algorithms. This benchmark tests algorithms to solve the following problem:
 
 
-$$\\min_w \\sum_i \\log(1 + \\exp(-y_i x_i^\\top w)) + \\lambda \\lvert w\\rvert_1$$
+$$\\min_w \\sum_i \\log(1 + \\exp(-y_i x_i^\\top w)) + \\lambda \\lVert w\\rVert_1$$
 
 where $n$ (or ``n_samples``) stands for the number of samples, $p$ (or ``n_features``) stands for the number of features, and
 
