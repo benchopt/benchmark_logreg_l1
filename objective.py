@@ -5,6 +5,7 @@ from benchopt import BaseObjective
 
 
 class Objective(BaseObjective):
+    min_benchopt_version = "1.3"
     name = "Sparse Logistic Regression"
 
     parameters = {
@@ -39,5 +40,5 @@ class Objective(BaseObjective):
     def _get_lambda_max(self):
         return abs(self.X.T @ self.y).max() / 2
 
-    def to_dict(self):
+    def get_objective(self):
         return dict(X=self.X, y=self.y, lmbd=self.lmbd)
