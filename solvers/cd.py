@@ -82,7 +82,6 @@ class Solver(BaseSolver):
                 self.X, self.y, self.lmbd, L, n_iter, self.newton_step
             )
 
-    @staticmethod
     @njit
     def cd(X, y, lmbd, L, n_iter, newton_step):
         n_samples, n_features = X.shape
@@ -110,7 +109,6 @@ class Solver(BaseSolver):
                     Xw += diff * X[:, j]
         return w
 
-    @staticmethod
     @njit
     def sparse_cd(X_data, X_indices, X_indptr, y, lmbd, L, n_iter,
                   newton_step):
