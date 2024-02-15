@@ -30,4 +30,4 @@ class Solver(BaseSolver):
                         **self.solver_parameter)
 
     def get_result(self):
-        return self.solver.get_weights()
+        return dict(beta=self.solver.get_weights())

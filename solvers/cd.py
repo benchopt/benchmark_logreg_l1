@@ -147,4 +147,4 @@ class Solver(BaseSolver):
         return w
 
     def get_result(self):
-        return self.w
+        return dict(beta=self.w)

@@ -38,4 +38,4 @@ class Solver(CommandLineSolver):
 
     def get_result(self):
         df = pd.read_csv(self.model_filename, header=5)
-        return df.w.to_numpy()
+        return dict(beta=df.w.to_numpy())
