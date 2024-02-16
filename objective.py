@@ -5,7 +5,7 @@ from benchopt import BaseObjective
 
 
 class Objective(BaseObjective):
-    min_benchopt_version = "1.3"
+    min_benchopt_version = "1.5"
     name = "Sparse Logistic Regression"
 
     parameters = {
@@ -25,13 +25,13 @@ class Objective(BaseObjective):
         self.X, self.y = X, y
         self.lmbd = self.reg * self._get_lambda_max()
 
-    def get_one_solution(self):
+    def get_one_result(self):
         n_features = self.X.shape[1]
         if self.fit_intercept:
             n_features += 1
-        return np.zeros(n_features)
+        return dict(beta=np.zeros(n_features))
 
-    def compute(self, beta):
+    def evaluate_result(self, beta):
         beta = beta.flatten().astype(np.float64)
         y_X_beta = self.y * (self.X @ beta)
         l1 = abs(beta).sum()

@@ -34,4 +34,4 @@ class Solver(BaseSolver):
         return stop_val + 1
 
     def get_result(self):
-        return self.clf.coef_.flatten()
+        return dict(beta=self.clf.coef_.flatten())

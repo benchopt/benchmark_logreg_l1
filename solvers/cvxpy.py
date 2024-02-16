@@ -32,4 +32,4 @@ class Solver(BaseSolver):
         self.problem.solve(max_iters=n_iter, verbose=False)
 
     def get_result(self):
-        return self.beta.value
+        return dict(beta=self.beta.value)

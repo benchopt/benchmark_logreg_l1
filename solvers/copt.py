@@ -109,4 +109,4 @@ class Solver(BaseSolver):
         self.beta = result.x
 
     def get_result(self):
-        return self.beta.flatten()
+        return dict(beta=self.beta.flatten())
